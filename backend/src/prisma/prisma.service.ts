@@ -9,7 +9,17 @@ export class PrismaService
 {
   constructor() {
     super({
-      adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+      adapter: new PrismaPg({
+        connectionString: process.env.DATABASE_URL,
+        // Railway's public Postgres proxy presents a self-signed cert, which
+        // Node's default TLS validation rejects. The connection is still
+        // encrypted — this only skips verifying the cert against a trusted
+        // CA, the standard trade-off for managed Postgres behind a proxy.
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? { rejectUnauthorized: false }
+            : undefined,
+      }),
     });
   }
 
