@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { useAuth } from "@/context/AuthProvider";
 
@@ -95,6 +96,13 @@ export default function RegisterPage() {
         >
           {loading ? "Registering..." : "Register"}
         </button>
+
+        <p className="text-center text-sm text-gray-500">
+          Already have an account?{" "}
+          <Link href="/login" className="font-medium text-blue-600 hover:underline">
+            Log in
+          </Link>
+        </p>
       </form>
     </main>
   );
