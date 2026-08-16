@@ -1,0 +1,12 @@
+# Root-level ignores. Each app (backend/, frontend/) has its own .gitignore for
+# node_modules, build output, and env files.
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Any stray env files at the repo root
+.env
+.env.*
+!.env.example
